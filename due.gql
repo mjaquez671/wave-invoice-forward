@@ -1,0 +1,54 @@
+query GetUpcomingInvoices($businessId: ID!, $page: Int!, $pageSize: Int!, $statuses: [InvoiceStatus!]) {
+  business(id: $businessId) {
+    id
+    invoices(page: $page, pageSize: $pageSize, statuses: $statuses) {
+      pageInfo {
+        currentPage
+        totalPages
+        totalCount
+      }
+      edges {
+        node {
+          id
+          createdAt
+          modifiedAt
+          pdfUrl
+          viewUrl
+          status
+          invoiceNumber
+          invoiceDate
+          poNumber
+          customer {
+            id
+            firstName
+            name
+            mobile
+            email
+          }
+          dueDate
+          amountDue {
+            value
+            currency {
+              symbol
+            }
+          }
+          taxTotal {
+            value
+            currency {
+              symbol
+            }
+          }
+          total {
+            value
+            currency {
+              symbol
+            }
+          }
+          lastSentAt
+          lastSentVia
+          lastViewedAt
+        }
+      }
+    }
+  }
+}
